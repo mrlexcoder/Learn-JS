@@ -2,7 +2,7 @@
 
 Level-1: Basic
 
-Is JavaScript single-threaded?
+Is JavaScript single-threaded
 Main components of the JavaScript Engine?
 Explain the event loop & asynchronous programming.
 Difference between var, let, and const?
