@@ -1,0 +1,39 @@
+🚀 JavaScript Developer Interview Questions 🚀
+
+Level-1: Basic
+
+Is JavaScript single-threaded?
+Main components of the JavaScript Engine?
+Explain the event loop & asynchronous programming.
+Difference between var, let, and const?
+JavaScript data types?
+What are callback functions & callback hell?
+Explain Promise & Promise chaining.
+What is async/await?
+Difference between == and === operators?
+Ways to create Objects in JavaScript?
+Rest and spread operators?
+What is a higher-order function?
+Level-2: Intermediate
+13. What is Closure? Use cases?
+
+Hoisting in JavaScript?
+What is a Temporal dead zone?
+Prototype chain & Object.create()?
+Call, Apply, and Bind methods?
+Lambda or arrow functions?
+Currying function?
+Features of ES6?
+Level-3: Expert
+21. Execution context, stack, variable object, scope chain?
+
+Priority of execution: callback, promise, setTimeout, process.nextTick()?
+Factory function & generator function?
+Ways to clone an object?
+How to make an object immutable?
+Event and event flow, bubbling, capturing?
+Event delegation?
+Server-sent events?
+Web worker or service worker in JavaScript?
+Comparing JSON objects in JavaScript?
+Credit to @mrlexcoder for these insightful questions!
