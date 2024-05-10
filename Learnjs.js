@@ -50,3 +50,25 @@ console.log(message);
 // It encounters the console.log(message); statement and logs "Hello, John!" to the console.
 // Memory Management: Throughout the execution, the JavaScript engine manages memory allocation for variables (name, message) and function contexts (execution contexts for greet).
 // Garbage Collection: If there were objects or variables that are no longer in use (e.g., local variables inside functions after they return), the JavaScript engine's garbage collector would reclaim their memory to prevent memory leaks.
+
+
+
+// Event Loop: The event loop is a mechanism in JavaScript that allows the runtime environment to efficiently handle multiple tasks without blocking the execution of other code. It manages tasks such as user interactions, timers, and I/O operations asynchronously.
+
+// Asynchronous Programming: Asynchronous programming in JavaScript allows tasks to be executed concurrently without waiting for each other to finish. This is particularly useful for operations like fetching data from a server or reading files, where waiting for the operation to complete could block other tasks.
+
+// Here's a simple JavaScript code snippet that demonstrates asynchronous programming using setTimeout:
+
+// javascript
+// Copy code
+console.log("Start");
+
+// Asynchronous function using setTimeout
+setTimeout(() => {
+  console.log("Async operation completed after 2 seconds");
+}, 2000);
+
+console.log("End");
+// In this example, the setTimeout function schedules a task to be executed after 2000 milliseconds (2 seconds). However, the program doesn't wait for those 2 seconds to complete before moving on. Instead, it continues executing the rest of the code. When the 2 seconds are up, the callback function passed to setTimeout is executed, printing "Async operation completed after 2 seconds" to the console.
+
+// The event loop is what enables this asynchronous behavior in JavaScript by managing the execution of tasks and ensuring that the program remains responsive even while asynchronous operations are being performed.
