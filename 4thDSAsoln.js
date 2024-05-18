@@ -13,7 +13,6 @@
 // Here's a JavaScript solution using a sliding window approach:
 
 // javascript
-// Copy code
 function longestSubstringWithoutRepeating(str) {
   let maxLength = 0;
   let start = 0;
