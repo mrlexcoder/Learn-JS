@@ -12,7 +12,7 @@
 // Output: 3 ("wke" is the longest substring without repeating characters)
 // Here's a JavaScript solution using a sliding window approach:
 
-// javascript
+// javascript xox
 function longestSubstringWithoutRepeating(str) {
   let maxLength = 0;
   let start = 0;
