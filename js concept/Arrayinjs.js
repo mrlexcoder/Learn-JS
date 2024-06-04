@@ -51,6 +51,97 @@ console.log(" ABc", myArray);
 console.log(Array2spl);
 
 
+//  array second lecture
+
+
+let marvels = ["alx","zox", "Heo" ];
+let max = [1,2,3,4];
+
+// marvels.concat(max);
+// marvels.push(max);
+
+
+
+
+
+// console.log(marvels)
+
+let joxaRR = marvels.concat(max)
+console.log(joxaRR)
+
+
+//  spread operator 
+
+
+const All_new = [...marvels, ...max];
+console.log(All_new)
+
+
+// ************
+const  allunder= [1,2,3,4,5,6,[23.33],[3,3,3] ,[22,221,[11,11]]];
+
+const real_anitherArr = allunder.flat(Infinity);
+
+console.log(real_anitherArr)
+
+
+console.log(Array.isArray("AMXMRG"))
+console.log(Array.from(" "));
+// console.log(Array.from((name: "AMXMRG")))
+
+let s1 = 1;
+let s2 = 2;
+
+console.log(Array.of(s1,s2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
