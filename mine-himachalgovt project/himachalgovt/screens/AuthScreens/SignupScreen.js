@@ -5,7 +5,7 @@ export default function SignupScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Signup Screen</Text>
-      <Button title="Go to Login" onPress={() => navigation.navigate('Login')} />
+      <Button title="Go to Login" onPress={() => navigation.navigate('Main')} />
     </View>
   );
 }
