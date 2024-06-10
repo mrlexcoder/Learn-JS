@@ -1,82 +1,142 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import PhoneInput from 'react-native-phone-input';
-import {LinearGradient} from 'expo-linear-gradient';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function SignupScreen({ navigation }) {
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [valid, setValid] = useState(false);
-  const phoneRef = React.createRef();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const validateEmail = (email) => {
+    // Simple email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = (email) => {
+    setEmail(email);
+    setEmailValid(validateEmail(email));
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const isFormValid = emailValid && email.length > 0 && password.length > 0;
 
   const handleSignup = () => {
-    if (phoneRef.current.isValidNumber()) {
-      // Add your signup logic here
-      console.log('Mobile Number:', phoneRef.current.getValue());
+    if (isFormValid) {
+      console.log('Email:', email);
+      console.log('Password:', password);
+      navigation.navigate("Main");
     } else {
-      alert('Please enter a valid mobile number');
+      alert('Please enter valid details');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Enter Your Mobile Number</Text>
-      <PhoneInput
-        ref={phoneRef}
-        initialCountry="us"
-        textStyle={styles.phoneInputText}
-        textProps={{
-          placeholder: 'Mobile Number',
-        }}
-        onChangePhoneNumber={(number) => {
-          setMobileNumber(number);
-          setValid(phoneRef.current.isValidNumber());
-        }}
-        style={styles.phoneInput}
-      />
-      <TouchableOpacity onPress={handleSignup} style={styles.buttonContainer} disabled={!valid}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={{ top: "-3%", left: -4, width: "97%" }}>
+        <Text style={styles.title}>Sign In Account</Text>
+        <Text style={styles.subtitle}>
+          Hii welcome to himachalgovt, Please enter your email and password
+        </Text>
+      </View>
+      <View style={[styles.inputContainer, !emailValid && styles.inputContainerInvalid]}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor="#aaa"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={handleEmailChange}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#aaa"
+          secureTextEntry={!passwordVisible}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity onPress={togglePasswordVisibility} style={styles.iconContainer}>
+          <Icon name={passwordVisible ? "eye-slash" : "eye"} size={20} color="#fff" />
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity onPress={handleSignup} style={[styles.buttonContainer, !isFormValid && { opacity: 0.5 }]} disabled={!isFormValid}>
         <LinearGradient
-          colors={['#00c6ff', '#0072ff']}
+          colors={['#82C341', '#82C341']}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sign Up</Text>
+          <Text style={styles.buttonText}>Sign In</Text>
         </LinearGradient>
       </TouchableOpacity>
-    </View>
+      <Text style={styles.orText}>Or</Text>
+      <TouchableOpacity style={styles.googleButton}>
+        <Icon name="google" size={20} color="#fff" />
+        <Text style={styles.googleButtonText}>Continue with Google</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')} style={styles.signInContainer}>
+        <Text style={styles.signInText}>Already have an account? <Text style={styles.signInLink}>Sign Up</Text></Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 2,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#24223B',
+    paddingTop: 20,
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
-    color: '#006400',
-    fontWeight:"600"
+    fontSize: 26,
+    marginBottom: 8,
+    color: '#fff',
+    fontWeight: '600',
+    justifyContent: "flex-start"
   },
-  phoneInput: {
+  subtitle: {
+    fontSize: 12,
+    marginBottom: 20,
+    color: '#aaa',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     width: '100%',
     height: 50,
-    marginBottom: 20,
-    backgroundColor: '#fff',
+    marginBottom: 15,
+    backgroundColor: '#030024',
     borderRadius: 10,
-    paddingHorizontal: 10,
-    borderWidth: 1,
+    paddingHorizontal: 15,
     borderColor: '#ccc',
+    borderWidth: 1,
+    borderColor:"#030024"
   },
-  phoneInputText: {
-    fontSize: 18,
-    color: '#333',
+  inputContainerInvalid: {
+    borderColor: '#82C341',
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: '#fff',
+  },
+  iconContainer: {
+    padding: 5,
   },
   buttonContainer: {
     width: '100%',
     borderRadius: 10,
     overflow: 'hidden',
+    marginBottom: 20,
   },
   button: {
     paddingVertical: 15,
@@ -85,6 +145,36 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+  orText: {
+    color: '#aaa',
+    marginBottom: 20,
+  },
+  googleButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    paddingVertical: 15,
+    backgroundColor: '#4285F4',
+    borderRadius: 10,
+    justifyContent: 'center',
+  },
+  googleButtonText: {
+    color: '#fff',
+    marginLeft: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  signInContainer: {
+    marginTop: 20,
+  },
+  signInText: {
+    color: '#aaa',
+    fontSize: 14,
+  },
+  signInLink: {
+    color: '#82C341',
     fontWeight: 'bold',
   },
 });

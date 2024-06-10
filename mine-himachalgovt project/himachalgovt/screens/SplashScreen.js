@@ -24,7 +24,8 @@ export default function SplashScreen({ navigation }) {
     return (
       
         <LinearGradient
-          colors={['#006400', '#FFFFFF', '#006400']} // Green, Black, Deep Blue
+          // colors={['#006400', '#FFFFFF', '#006400']} // Green, Black, Deep Blue
+          colors={['#24223B', '#FFFFFF', '#24223B']} // Green, Black, Deep Blue
           style={styles.container}
         >
         <Animatable.Text
