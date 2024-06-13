@@ -7,7 +7,6 @@ export default function SignupScreen({ navigation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
 
@@ -25,7 +24,7 @@ export default function SignupScreen({ navigation }) {
     setEmailValid(validateEmail(email));
   };
 
-  const isFormValid = name.length > 0 && emailValid && email.length > 0 && password.length > 0 && password === confirmPassword;
+  const isFormValid = name.length > 0 && emailValid && email.length > 0 && password.length > 0;
 
   const handleSignup = () => {
     if (isFormValid) {
@@ -80,20 +79,6 @@ export default function SignupScreen({ navigation }) {
           <Icon name={passwordVisible ? "eye-slash" : "eye"} size={20} color="#fff" />
         </TouchableOpacity>
       </View>
-
-      {/* <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          placeholderTextColor="#aaa"
-          secureTextEntry
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
-        <TouchableOpacity onPress={togglePasswordVisibility} style={styles.iconContainer}>
-          <Icon name={passwordVisible ? "eye-slash" : "eye"} size={20} color="#fff" />
-        </TouchableOpacity>
-      </View> */}
 
       <TouchableOpacity onPress={handleSignup} style={[styles.buttonContainer, !isFormValid && { opacity: 0.5 }]} disabled={!isFormValid}>
         <LinearGradient
